@@ -1,9 +1,11 @@
 package com.project.cine.cinebilheteria.controller;
 
+import com.project.cine.cinebilheteria.model.entity.Filme;
 import com.project.cine.cinebilheteria.service.FilmeService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/filmes")
 @RestController
@@ -11,31 +13,31 @@ import org.springframework.web.bind.annotation.*;
 
 public class FilmeController {
 
-    FilmeService filmeService;
+    private final FilmeService filmeService;
 
     @GetMapping
-    public void getAll(){
-    filmeService.getAll();
+    public List<Filme> getAll() {
+        return filmeService.getAll();
     }
 
     @GetMapping("/{id}")
-    public void getById(@PathVariable Long id){
-    filmeService.getById(id);
+    public Filme getById(@PathVariable Long id) {
+        return filmeService.getById(id);
     }
 
     @PostMapping
-    public void save(){
-    filmeService.save();
+    public Filme save(@RequestBody Filme filme) {
+        return filmeService.save(filme);
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id){
-    filmeService.update(id);
+    public Filme update(@PathVariable Long id, @RequestBody Filme filme) {
+        return filmeService.update(id, filme);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
-    filmeService.delete(id);
+    public void delete(@PathVariable Long id) {
+        filmeService.delete(id);
 
     }
 }
