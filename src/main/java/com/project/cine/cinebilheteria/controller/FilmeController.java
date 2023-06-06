@@ -15,13 +15,14 @@ public class FilmeController {
 
     private final FilmeService filmeService;
 
+
     @GetMapping
     public List<Filme> getAll() {
         return filmeService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Filme getById(@PathVariable Long id) {
+    public Filme getByID(@PathVariable Long id) {
         return filmeService.getById(id);
     }
 
@@ -38,6 +39,6 @@ public class FilmeController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         filmeService.delete(id);
-
     }
+
 }

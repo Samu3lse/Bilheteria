@@ -5,44 +5,44 @@ import com.project.cine.cinebilheteria.repository.FilmeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
-
 public class FilmeService {
 
-   private final FilmeRepository filmeRepository ;
-   public List<Filme> getAll(){
-   List<Filme> filmes = new ArrayList<>();
-   Filme filme1 = new Filme("Casa Monstro",1l);
-   Filme filme2 = new Filme("The Chosen",2l);
-   filmes.add(filme1);
-   filmes.add(filme2);
+    private final FilmeRepository filmeRepository;
 
-   return filmes;
+    public List<Filme> getAll() {
+        List<Filme> filmes = filmeRepository.findAll();
+        return filmes;
+    }
 
-   }
+    public Filme getById(Long id) {
 
-   public Filme getById(Long id){
-      Filme filme = new Filme("Casa Monstro",1l);
-      Filme filmeGetById = filmeRepository.getById(id);
-      return filmeGetById;
-   }
+        Filme filme = filmeRepository.getById(id);
+        return filme;
+    }
 
-   public Filme save(Filme filme){
-      Filme filmeSavad = filmeRepository.save(filme);
-      return filmeSavad;
-   }
+    public Filme save(Filme filme) {
 
-   public Filme update(Long id , Filme filme){
-      return filme;
-   }
+        Filme filmeSaved = filmeRepository.save(filme);
+        return filmeSaved;
+    }
 
-   public void delete(Long id){
+    public Filme update(Long id, Filme filme) {
+//        Método update:
 
-   }
+//        verificação: Verificar se o filme passado pelo usuário já existe no banco.
+//                Se sim ( comando alterar )
+//        Se não ( Adicionar filme)
+
+        return  filme;
+    }
+
+    public void delete(Long id) {
+        filmeRepository.deleteById(id);
+    }
 
 }
