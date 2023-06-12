@@ -20,9 +20,13 @@ public class FilmeService {
     }
 
     public Filme getById(Long id) {
-
         Filme filme = filmeRepository.getById(id);
-        return filme;
+
+        if(filme != null){
+            return filme;
+        }else{
+            return null;
+        }
     }
 
     public Filme save(Filme filme) {
@@ -32,17 +36,24 @@ public class FilmeService {
     }
 
     public Filme update(Long id, Filme filme) {
-//        Método update:
+//
+        Filme filmeFromDataBase = this.filmeRepository.getById(id);
+        if(filmeFromDataBase != null){
+            filme.setId(id);
 
-//        verificação: Verificar se o filme passado pelo usuário já existe no banco.
-//                Se sim ( comando alterar )
-//        Se não ( Adicionar filme)
-
+            filmeRepository.save(filme);
+        }
         return  filme;
     }
 
     public void delete(Long id) {
-        filmeRepository.deleteById(id);
+        Filme filme = this.getById(id);
+
+        if(filme != null)
+        { filmeRepository.deleteById(id);
+        }else{
+            System.out.println();;
+        }
     }
 
 }
