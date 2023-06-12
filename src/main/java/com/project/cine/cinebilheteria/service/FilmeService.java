@@ -36,14 +36,15 @@ public class FilmeService {
     }
 
     public Filme update(Long id, Filme filme) {
-//
-        Filme filmeFromDataBase = this.filmeRepository.getById(id);
-        if(filmeFromDataBase != null){
+        Filme filmeFromDataBse = this.filmeRepository.findById(id).get();
+        if (filmeFromDataBse != null) {
             filme.setId(id);
-
-            filmeRepository.save(filme);
+            Filme filmeUpdated = filmeRepository.save(filme);
+            return filmeUpdated;
+        } else {
+            System.out.println("Filme não encontrado");
+            return null;
         }
-        return  filme;
     }
 
     public void delete(Long id) {
@@ -52,7 +53,7 @@ public class FilmeService {
         if(filme != null)
         { filmeRepository.deleteById(id);
         }else{
-            System.out.println();;
+            System.out.println("Filme nao encontrado");;
         }
     }
 
